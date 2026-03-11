@@ -1,47 +1,49 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="root-wrapper">
+    <img src="./assets/Untitled (1).png" alt="logo" class="logo">
+    <RouterView />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #222222;
+  /* Remove overflow: hidden; so mobile users can scroll if the form is long */
+  overflow-x: hidden; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.root-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  gap: 4rem; /* Adds nice space between logo and form */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
+  max-width: 300px; /* Adjust size as needed */
+  height: auto;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+/* --- MOBILE RESPONSIVE LOGIC --- */
+@media (max-width: 768px) {
+  .root-wrapper {
+    flex-direction: column; /* Stacks logo on top of form */
+    gap: 2rem;             /* Reduces space for mobile */
+    justify-content: flex-start; /* Starts from top instead of middle */
+    padding-top: 50px;
   }
 
   .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+    max-width: 200px; /* Makes logo smaller on phones */
   }
 }
 </style>
